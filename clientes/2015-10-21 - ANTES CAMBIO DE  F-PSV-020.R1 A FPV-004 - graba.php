@@ -1,0 +1,266 @@
+<HTML>
+<HEAD>
+
+ <!--
+ 2015-04-28
+ Se cambia el Titulo de:   
+ <TITLE>Encuesta de satisfacción al Cliente</TITLE>
+ A:
+ <TITLE>Evaluación de Seguimiento Posventa</TITLE>
+ -->
+
+
+ <TITLE>Evaluación de Seguimiento Posventa</TITLE>
+  <style type="text/css">
+   titulo {font-family: Arial,Helvetica,sans-serif;
+           font-size: 18px;
+   }
+   cuerpo {font-family: Arial,Helvetica,sans-serif;
+           font-size: 12px;
+   }
+   pregunta {font-family: Arial,Helvetica,sans-serif;
+             font-size: 10px;
+   }
+  </style>
+</HEAD>
+<BODY>
+ <?
+  //Establecer la zona horaria a México
+  date_default_timezone_set('America/Mexico_City');
+  define("LATIN1_UC_CHARS", "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ");
+
+  //Conexión a la base de datos
+  $dbh = mysql_connect("mysql1047.servage.net", "cotizatv1", "cotizaTV2011") or die('problema conexión: '.mysql_error());
+
+  //Seleccionar base de datos
+  mysql_select_db("cotizatv1", $dbh) or die("error base de datos: ".mysql_error());;
+
+  //Fecha del sistema cuando fue grabada la encuesta
+  $fecha = date("Y/m/d H:i:s",time());
+
+  //De las fechas de adquisición y de visita,invertir el dia y el añó para grabarla a la base
+  $fecha_adq = $_POST['fecha_adq'];
+  $fecha_vis = $_POST['fecha_vis'];
+
+  $fecha_adq_mes = substr($fecha_adq, 0, 2);
+  $fecha_adq_dia = substr($fecha_adq, 3, 2);
+  $fecha_adq_anio = substr($fecha_adq, 6, 4);
+  $fecha_adq = $fecha_adq_anio.'-'.$fecha_adq_dia.'-'.$fecha_adq_mes;
+
+  $fecha_vis_mes = substr($fecha_vis, 0, 2);
+  $fecha_vis_dia = substr($fecha_vis, 3, 2);
+  $fecha_vis_anio = substr($fecha_vis, 6, 4);
+  $fecha_vis = $fecha_vis_anio.'-'.$fecha_vis_dia.'-'.$fecha_vis_mes;
+
+  //Cadena para grabar el encabezado
+  $strsql = "INSERT INTO encabezado_satisfaccion(nombre_cliente, fecha, documento, fecha_adquisicion, fecha_visita) ";
+  $strsql.= "VALUES('$_POST[fullname]', '$fecha', '$_POST[documento]', '$fecha_adq', '$fecha_vis')";
+
+  //Ejecutar query para grabar el encabezado
+  $query = mysql_query($strsql,$dbh) or die("problema query: ".mysql_error());;
+
+  //Leer el id que se asignó a la encuensta para ligarlo con las preguntas
+  $strsql = "SELECT id FROM encabezado_satisfaccion ORDER BY id DESC LIMIT 1";
+
+  //Ejecutar query de lectura del id de la encuesta
+  $query_id = mysql_query($strsql, $dbh) or die ("problema query: ".mysql_error());
+
+  //Leer id de la encuesta
+  while($var = mysql_fetch_row($query_id)){
+    $id = $var[0];
+  };
+
+  //Grabar el id de la encuesta, el número de la pregunta y radio button de las preguntas 1-3
+  for($i=1; $i<=3; $i++) {
+   $radio = $_POST['radio_ask'.$i];
+   $strsql = "INSERT INTO detalle_satisfaccion(id, pregunta, calif) ";
+   $strsql.= "VALUES('$id', '$i', '$radio')";
+
+   //Ejecutar query para grabar cada renglón
+   $query = mysql_query($strsql,$dbh) or die("problema query: ".mysql_error());;
+  }
+
+
+  //Grabar el id de la encuesta, el número de la pregunta y el comentario de la pregunta 4
+  $radio = $_POST['radio_ask4'];
+  $strsql = "INSERT INTO detalle_satisfaccion(id, pregunta, sino) ";
+  $strsql.= "VALUES('$id', '4', '$radio')";
+
+  //Ejecutar query para grabar el renglón
+  $query = mysql_query($strsql,$dbh) or die("problema query: ".mysql_error());;
+
+
+  //Grabar el id de la encuesta, el número de la pregunta y radio button de la pregunta 5
+  $comentario = $_POST['comm_ask5'];
+  $strsql = "INSERT INTO detalle_satisfaccion(id, pregunta, comentario) ";
+  $strsql.= "VALUES('$id', '5', '$comentario')";
+
+  //Ejecutar query para grabar cada renglón
+  $query = mysql_query($strsql,$dbh) or die("problema query: ".mysql_error());;
+
+
+  //Grabar el id de la encuesta, el número de la pregunta y el comentario de las preguntas 6-8
+  for($i=6; $i<=8; $i++) {
+   $radio = $_POST['radio_ask'.$i];
+   $strsql = "INSERT INTO detalle_satisfaccion(id, pregunta, sino) ";
+   $strsql.= "VALUES('$id', '$i', '$radio')";
+
+   //Ejecutar query para grabar cada renglón
+   $query = mysql_query($strsql,$dbh) or die("problema query: ".mysql_error());;
+  }
+
+
+  //Grabar el id de la encuesta, el número de la pregunta y radio button de la pregunta 9
+  $radio = $_POST['radio_ask9'];
+  $strsql = "INSERT INTO detalle_satisfaccion(id, pregunta, calif) ";
+  $strsql.= "VALUES('$id', '9', '$radio')";
+
+  //Ejecutar query para grabar cada renglón
+  $query = mysql_query($strsql,$dbh) or die("problema query: ".mysql_error());;
+
+
+  //Grabar el id de la encuesta, el número de la pregunta y el comentario de las preguntas 10-13
+  for($i=10; $i<=13; $i++) {
+   $comentario = $_POST['comm_ask'.$i];
+   $strsql = "INSERT INTO detalle_satisfaccion(id, pregunta, comentario) ";
+   $strsql.= "VALUES('$id', '$i', '$comentario')";
+
+   //Ejecutar query para grabar cada renglón
+   $query = mysql_query($strsql,$dbh) or die("problema query: ".mysql_error());;
+  }
+
+
+  //Cerrar conexión
+  mysql_close($dbh);
+  echo '<script type="text/javascript">window.print();</script>';
+ ?>
+  <table width="100%" border="0">
+   <tr>
+     <td width="6%" rowspan="2"><img src="../clientes/images/Mekatech.jpg" width=50 height=50 border=0 alt="logo"></td>
+	 
+	 <!--
+     2015-04-28
+     Se cambia: <titulo>Encuesta de Satisfacción al Cliente F-PSV-020.R1</titulo>
+     A: <titulo>Evaluación de Seguimiento Posventa F-PSV-020.R1</titulo>
+     -->
+	 
+     <td width="30%" rowspan="2" valign="bottom"><titulo>Evaluación de Seguimiento Posventa F-PSV-020.R1</titulo></td>
+     <!--<td width="29%" height="25" align="left"><titulo>Fecha: <? echo $fecha; ?></titulo></td>-->
+     <td width="35%" align="left"><titulo>Folio: <? echo $id;?></titulo></td>
+   </tr>
+   <tr>
+     <td colspan="2" align="left"><titulo></titulo></td>
+   </tr>
+  </table>
+  <table border=1 bgcolor="#eeeeee">
+  <tr>
+   <td><cuerpo>Nombre del Cliente</cuerpo></td>
+   <td align="left"><cuerpo><? echo $_POST['fullname']; ?></cuerpo></td>
+  </tr>
+  <tr>
+   <td><cuerpo>Documento que ampara la compra</cuerpo></td>
+   <td align="left"><cuerpo><? echo $_POST['documento']; ?></cuerpo></td>
+  </tr>
+  <tr>
+   <td><cuerpo>Fecha de Adquisición</cuerpo></td>
+   <td align="left"><cuerpo><? echo $_POST['fecha_adq']; ?></cuerpo></td>
+  </tr>
+  <tr>
+   <td><cuerpo>Fecha de Visita</cuerpo></td>
+   <td align="left"><cuerpo><? echo $_POST['fecha_vis']; ?></cuerpo></td>
+  </tr>
+ </table>
+ <table border=1 bgcolor="#eeeeee">
+  <tr>
+   <td><pregunta>#</pregunta></td>
+   <td align="center"><pregunta>PREGUNTA</pregunta></td>
+   <td></td>
+  </tr>
+  <tr>
+   <td><pregunta>1</pregunta></td>
+   <td><pregunta>Asigne una calificación de la calidad del equipo recibido (5 la más alta, 0 la más baja)</pregunta></td>
+   <td><pregunta><? echo $_POST['radio_ask1']; ?></pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>2</pregunta></td>
+   <td><pregunta>Asigne una calificación de la asesoria recibida sobre el equipo(5 la más alta, 0 la más baja)</pregunta></td>
+   <td><pregunta><? echo $_POST['radio_ask2']; ?></pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>3</pregunta></td>
+   <td><pregunta>Asigne una calificación del servicio pos venta recibido sobre el equipo(5 la más alta, 0 la más baja)</pregunta></td>
+   <td><pregunta><? echo $_POST['radio_ask3']; ?></pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>4</pregunta></td>
+   <td><pregunta>Su equipo ha presentado fallas</pregunta></td>
+   <td><pregunta><? if($_POST['radio_ask4'] == 1) {
+                      echo "Si"; }
+		    else {
+		      echo "No"; };?>
+    </pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>5</pregunta></td>
+   <td><pregunta>Si su equipo presento fallas, ¿A quién las reportó?, e indique las fallas</pregunta></td>
+   <td><pregunta><? echo $_POST['comm_ask5']; ?></pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>6</pregunta></td>
+   <td><pregunta>¿Recibió una pronta respuesta de su reporte?</pregunta></td>
+   <td><pregunta><? if($_POST['radio_ask6'] == 1) {
+                      echo "Si"; }
+		    else {
+		      echo "No"; };?>
+    </pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>7</pregunta></td>
+   <td><pregunta>¿Usted cuenta con un taller cercano para la prestación de su servicio posventa Mekatech</pregunta></td>
+   <td><pregunta><? if($_POST['radio_ask7'] == 1) {
+                      echo "Si"; }
+		    else {
+	              echo "No"; };?>
+    </pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>8</pregunta></td>
+   <td><pregunta>¿El equipo le ayuda a sus labores agrícolas y contribuye al beneficio de su parcela?</pregunta></td>
+   <td><pregunta><? if($_POST['radio_ask8'] == 1) {
+                      echo "Si"; }
+		    else {
+		      echo "No"; };?>
+    </pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>9</pregunta></td>
+   <td><pregunta>Asigne una calificación al servicio y/o mantenimiento proporcionado (5 la más alta, 0 la más baja)</pregunta></td>
+   <td><pregunta><? echo $_POST['radio_ask9']; ?></pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>10</pregunta></td>
+   <td><pregunta>¿Qué beneficios le ha traido el equipo recibido?</pregunta></td>
+   <td><pregunta><? echo $_POST['comm_ask10']; ?></pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>11</pregunta></td>
+   <td><pregunta>¿Qué nuevos equipos e implementos le gustaria desarrollara la empresa?</pregunta></td>
+   <td><pregunta><? echo $_POST['comm_ask11']; ?></pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>12</pregunta></td>
+   <td><pregunta>¿En qué aspectos cree que debemos mejorar?</pregunta></td>
+   <td><pregunta><? echo $_POST['comm_ask12']; ?></pregunta></td>
+  </tr>
+  <tr>
+   <td><pregunta>13</pregunta></td>
+   <td><pregunta>Comentarios extra</pregunta></td>
+   <td><pregunta><? echo $_POST['comm_ask13']; ?></pregunta></td>
+  </tr>
+ </table>
+ <titulo><a href='http://www.mekatech.tv/clientes'>Nueva encuesta</a></titulo>
+ </br>
+ </br>
+ <img src="../servicio/images/pie_cotiza.jpg" width=700 height=50 border=0 alt="logo">
+</BODY>
+</HTML>

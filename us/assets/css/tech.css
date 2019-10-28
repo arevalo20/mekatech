@@ -1,0 +1,924 @@
+body {
+  margin: 0px;
+  background-color: #ffffff;
+  /* font-family: "Poppins", sans-serif; */
+  font-size: 16px;
+}
+
+#zsiqwidget {
+  display: none;
+}
+
+input,
+select {
+  width: 100%;
+  display: block;
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
+  color: #495057;
+  border: 1px solid #ced4da;
+  transition: border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+  border-radius: 0px;
+  padding-left: 28px;
+  background: #ffffff;
+}
+
+select {
+  padding-left: 0.75rem;
+}
+
+textarea {
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid #ced4da;
+}
+
+.close:not(:disabled):not(.disabled):focus,
+.close:not(:disabled):not(.disabled):hover {
+  outline: none;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  -webkit-transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  -ms-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+
+.header_container {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.header.scrolled {
+  top: -40px;
+}
+
+.top_bar {
+  width: 100%;
+  background: #6a6a6a;
+}
+
+.top_bar_container {
+  width: 100%;
+  height: 100%;
+}
+
+.top_bar_content {
+  width: 100%;
+  height: 40px;
+}
+
+ul.top_bar_contact_list {
+  list-style: none;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+.top_bar_contact_list li {
+  display: inline-block;
+  margin-right: 21px;
+}
+
+.top_bar_contact_list,
+.top_bar_contact_list a {
+  font-size: 14px;
+  color: #FFFFFF;
+  margin-left: 0px;
+}
+
+main .contenido-inicio {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(rgba(238, 238, 238, 0.16), rgba(253, 253, 253, 0.34)), url(../img/fondo-metal-bl.jpg);
+  background-size: cover;
+  padding: 30px 0 30px;
+  margin-top: 112px;
+  align-items: center;
+}
+
+main .contenido-web {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(rgba(238, 238, 238, 0.16), rgba(253, 253, 253, 0.34)), url(../img/fondo-metal-bl.jpg);
+  background-size: cover;
+  align-items: inherit;
+  padding: 30px 0 30px;
+  margin-top: 112px;
+}
+
+main .contenido-web-ingles {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(rgba(238, 238, 238, 0.16), rgba(253, 253, 253, 0.34)),
+    url(../img/fondo-metal-bl.jpg);
+  background-size: cover;
+  align-items: inherit;
+  padding: 0 0 30px;
+}
+
+/* ------ row ------ */
+
+.inicial {
+  text-align: right;
+}
+
+.enlace {
+  color: #fd7e14;
+  cursor: pointer;
+}
+
+.enlace:hover {
+  color: #883500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link {
+  color: #2f2f2f;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: #fd7e14;
+}
+
+a,
+a:hover,
+a:visited,
+a:active,
+a:link {
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+  text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+}
+
+h4,
+h6 {
+  color: #fd7e14;
+  text-align: center;
+}
+
+b,
+strong {
+  font-weight: 500;
+}
+
+strong {
+  color: #fd7e14;
+}
+
+.icon {
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.contenedor {
+  max-width: 1280px;
+  width: 90%;
+  margin: auto;
+}
+
+.center-v {
+  align-items: center;
+}
+
+.center-h {
+  justify-content: center;
+}
+
+.menu {
+  background-color: #fd7e14;
+  min-height: 4rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.menu ul {
+  margin-top: 0;
+  margin-bottom: 0rem;
+  padding: 0px;
+}
+
+.sub-menu {
+  border: 0px solid #fd7e14;
+}
+
+.sub-menu ul {
+  margin-top: 0;
+  margin-bottom: 0rem;
+  padding: 0px;
+}
+
+.sub-menu .navbar {
+  padding: 0px;
+}
+
+.sub-menu .nav-item a {
+  color: #464646;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sub-menu .nav-item a:hover {
+  color: #fd7e14;
+}
+
+.logo {
+  color: #fff;
+  font-size: 20px;
+}
+
+.dropdown-menu {
+  background-color: #fd7e14;
+  -webkit-box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.5);
+  border: 1px solid #ce6105;
+  border-radius: 0px;
+  padding: 0;
+}
+
+.dropdown-menu.show {
+  width: 100%;
+  width: 240px;
+}
+
+.menu-item {
+  padding: 0.25rem 0.2rem;
+  padding: 10px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.menu-item:focus,
+.menu-item:hover,
+.menu-item.active,
+.menu-item:active {
+  margin: 0 auto;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #883500;
+}
+
+.item.nav-item a.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.item.nav-item a.nav-link:hover,
+.navbar-light .navbar-nav .show>.nav-link {
+  text-decoration: none;
+  color: #883500;
+  cursor: pointer;
+}
+
+/* -------- CONTENIDO DE LA WEB ------- */
+.titular {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(rgba(189, 189, 189, 0.49), rgba(253, 253, 253, 0.91)),
+    url(../assets/img/fondo-metal-bl.jpg);
+  background-size: cover;
+  margin-top: 108px;
+}
+
+/* ------ PAGINA INICIO ------- */
+
+.imagen {
+  text-align: center;
+}
+
+.imagen img {
+  width: 100%;
+}
+
+.video,
+.content-mapa {
+  padding-bottom: 20px;
+}
+
+.contenido-index {
+  margin-top: 112px;
+}
+
+#main-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+#call-to-action-2 {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+#banner {
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+#call-to-action-2 {
+  background-color: #ef8903;
+  padding: 5px 0;
+}
+
+#call-to-action-2 p {
+  color: #fff;
+  padding: 10px 0;
+}
+
+#content {
+  position: relative;
+  background: #fff;
+  padding: 10px 0;
+}
+
+/* -- SECCIÓN UNO, DOS, TRES -- */
+
+.bold {
+  color: #fd7e14;
+  font-weight: 500;
+}
+
+.texto {
+  margin: 0 auto;
+}
+
+.info-producto {
+  margin-bottom: 20px;
+}
+
+/*  */
+
+.texto-slogan {
+  margin: 20px 0;
+  color: #333333;
+  text-align: center;
+  height: 18vh;
+  display: grid;
+}
+
+.txt_darkgrey {
+  color: #333333;
+  margin: 0px;
+}
+
+.txt_orange {
+  color: #fd7e14;
+}
+
+.txt_slogan {
+  font-size: 14px;
+  color: #929292;
+  margin: 0px;
+}
+
+/* ------ ABOUT-US ------ */
+
+/* ------ PRODUCTS ------ */
+
+a.nav-link.active {
+  color: #fd7e14;
+}
+
+.texto-prod {
+  text-align: center;
+}
+
+.prod-info a {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+}
+
+.prod-info img {
+  max-width: 100%;
+}
+
+.prod-info:hover {
+  -webkit-box-shadow: 0 0px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0px 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  /* background: #fff; */
+  -webkit-transition: all 800ms ease;
+  -moz-transition: all 800ms ease;
+  -ms-transition: all 800ms ease;
+  -o-transition: all 800ms ease;
+  transition: all 800ms ease;
+}
+
+.prod-texto {
+  margin-top: 10px;
+  -webkit-transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  -ms-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+
+.columnas-prod {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.elementos-titulo {
+  width: 70px;
+  text-align: center;
+  float: left;
+}
+
+.info-producto ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.elementos-texto h5 {
+  margin: 0px 0 5px 0;
+  color: #7b7b7b;
+}
+
+.titulo-horizontal h1{
+  font-size: 2.2rem;
+}
+
+.titulo-horizontal h1,
+.titulo-horizontal h5 {
+  color: #fd7e14;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0px;
+}
+
+/* --------------------------- */
+
+.content-titulo {
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.info-producto .catalogo h5 {
+  background: #fd7e14;
+  color: #ffffff;
+  text-align: center;
+  margin: 0px;
+  padding: 5px 0px;
+  width: 100%;
+  float: left;
+  font-size: 17px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.info-producto .catalogo .hp-fuerza {
+  background: #464646;
+}
+
+.info-producto .catalogo .sub-title {
+  font-weight: 600;
+  color: #464646;
+  text-align: center;
+}
+
+.info-producto .catalogo .sub-title h3 {
+  font-weight: 900;
+  color: #acacac;
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 0px;
+}
+
+.info-producto .catalogo .sub-title {
+  font-weight: 600;
+  color: #464646;
+  text-align: center;
+}
+
+.info-producto .catalogo table {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.info-producto .catalogo td.model-cosecha:last-child {
+  color: #fd7e14;
+  font-weight: 600;
+}
+
+.info-producto .catalogo td:first-child {
+  font-weight: 600;
+  /* width: 170px; */
+}
+
+.info-producto .catalogo td:last-child {
+  text-align: right;
+  color: #797979;
+}
+
+.info-producto .catalogo a {
+  padding: 3px;
+  background: #fd7e14;
+  color: #ffffff;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 0px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.info-producto .catalogo a:hover {
+  background: rgba(255, 255, 255, 0.67);
+  color: #fd7e14;
+  border: 1px solid #fd7e14;
+  -webkit-transition: all 700ms ease;
+  -moz-transition: all 700ms ease;
+  -ms-transition: all 700ms ease;
+  -o-transition: all 700ms ease;
+  transition: all 700ms ease;
+}
+
+.info-producto .catalogo .info-texto {
+  color: #797979;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  list-style: none;
+  padding-left: 0px;
+}
+
+/* ------ CONTACT ------ */
+
+#contact h5 {
+  color: #fd7e14;
+}
+
+.mapa {
+  border: 3px solid #fd7e14;
+  border-radius: 5px;
+}
+
+#contact .form-contact {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.form-contact::before {
+  font-family: "FontAwesome";
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-size: 15px;
+  position: absolute;
+  top: 11px;
+  left: 10px;
+}
+
+.input_user::before {
+  content: "\f007";
+  z-index: 1;
+}
+
+.input_phone::before {
+  content: "\f095";
+  z-index: 1;
+}
+
+.input_mail::before {
+  content: "\f1fa";
+  z-index: 1;
+}
+
+.input_emp::before {
+  content: "\f1ad";
+  z-index: 1;
+}
+
+.btn-contact {
+  padding: 3px;
+  background: #fd7e14;
+  color: #ffffff;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 0px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  border: 1px solid #fd7e14;
+}
+
+.btn-contact:hover {
+  background: rgba(255, 255, 255, 0.67);
+  color: #883500;
+  border: 1px solid #883500;
+  -webkit-transition: all 700ms ease;
+  -moz-transition: all 700ms ease;
+  -ms-transition: all 700ms ease;
+  -o-transition: all 700ms ease;
+  transition: all 700ms ease;
+}
+
+/* ------ COLUMNAS CATALOGO ------ */
+
+.box2,
+.box3 {
+  padding-top: 10px;
+}
+
+.box3 .imagen img {
+  width: 200px;
+}
+
+/* -------- FINANCIAMIENTO --------- */
+
+#financiamiento .contenido-texto {
+  margin-bottom: 10px;
+}
+
+#financiamiento .info-finan {
+  text-align: right;
+}
+
+#financiamiento .tabla {
+  width: 75%;
+  margin: 0 auto;
+  border: 1px solid #ffcc7e;
+  /* border-top: none; */
+}
+
+#financiamiento tr:nth-child(2n+1) {
+  background: #ffffff;
+}
+
+#financiamiento tr:nth-child(2n) {
+  background: #F2F2F2;
+}
+
+#financiamiento tr.titulo-tabla th {
+  background-color: #ef8903;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 3px;
+}
+
+#financiamiento tr.titulo td {
+  background-color: #646464;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: 400;
+  width: auto;
+}
+
+#financiamiento td {
+  font-weight: 400;
+  width: auto;
+  color: #404040;
+  text-align: inherit;
+  padding: 3px;
+}
+
+#financiamiento td.tipo-serie {
+  text-align: center;
+}
+
+/* ------------- */
+
+.arriba {
+  width: 20px;
+  height: 20px;
+  background: #fd7e14;
+  color: #FFFFFF;
+  padding: 8px;
+  font-size: 20px;
+}
+
+.arriba:hover {
+  background: #883500;
+  color: #FFFFFF;
+}
+
+/* -- FOOTER -- */
+
+footer {
+  background: #2f2f2f;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer .contenedor {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+footer .redes img {
+  margin: 0 40px;
+  transform: rotate(0);
+  transition: 0.4s;
+  width: 30px;
+}
+
+footer .redes img:hover {
+  transform: rotate(360deg);
+  transition: 0.4s;
+}
+
+footer p {
+  color: #fff;
+  margin-bottom: 7px;
+}
+
+footer p:first-child {
+  margin-top: 40px;
+}
+
+footer p:last-child {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+footer .sub-footer {
+  font-size: 10px;
+  color: #ffffff;
+}
+
+
+/* ----------------- */
+
+.map {
+  display: none;
+}
+
+
+/* --------- Movil -------- */
+
+@media (max-width: 480px) {
+  .top_bar_contact_list li {
+    margin-right: 8px;
+  }
+
+  .top_bar_contact_list li:last-child {
+    margin-right: 0px;
+  }
+
+  .top_bar_contact_list,
+  .top_bar_contact_list a {
+    font-size: 12px;
+  }
+
+  .dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.18);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .dropdown-menu.show {
+    width: 100%;
+  }
+
+  .sub-menu ul {
+    width: -webkit-fill-available;
+    width: -moz-available;
+  }
+
+  .sub-menu .nav-item a {
+    padding: .2rem 0rem;
+  }
+
+  #contenedor-titulo-flex {
+    margin: 5vh 0;
+  }
+
+  .contenedor-titulo h1 {
+    width: 100%;
+    font-size: 40px;
+  }
+
+  .prod-info {
+    margin-bottom: 10px;
+  }
+
+  .imagen img {
+    width: 100%;
+  }
+
+  main .contenido-inicio {
+    height: inherit;
+    max-height: inherit;
+    padding: 40px 0;
+    display: block;
+  }
+
+  /* ------ slider ------ */
+  .flexslider .slides>li {
+    height: 95px;
+  }
+
+  .flex-control-nav {
+    z-index: 10;
+    position: inherit !important;
+  }
+
+  main .contenido-web-ingles {
+    padding: 30px 0 30px;
+  }
+
+  .texto-slogan {
+    height: inherit;
+  }
+
+  /* -------- MOTOCULTOR -------- */
+
+  .columnas-prod {
+    width: auto;
+  }
+
+  .titulo-horizontal {
+    display: block;
+  }
+
+  .elementos-titulo {
+    display: none;
+  }
+
+  .titulo-horizontal h1,
+  .titulo-horizontal h5 {
+    color: #fd7e14;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0px;
+  }
+
+  .elementos-texto {
+    padding: 0px 0 25px;
+    float: none;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  /* ------ TRACTOR-LIGERO ------ */
+
+  .tract-lig-prod {
+    width: auto;
+  }
+
+  /* ------ titulo tabla ------ */
+  .catalogo {
+    padding-bottom: 20px;
+  }
+
+  .box3 .imagen img {
+    width: auto;
+  }
+
+  /* ------- FINANCIAMIENTO ------- */
+  #financiamiento .tabla {
+    width: 100%;
+  }
+
+  /* ------ CTS SERVICIOS ------ */
+
+  .ciudades {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  /* ------ Guia videos ------ */
+
+  .titulo-cap {
+    margin-bottom: 15px;
+  }
+
+}
+
+
+/* -------- Monitor grande ---------- */
+
+@media (min-width: 1441px) {}
